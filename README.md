@@ -1,4 +1,4 @@
-## Traffice Spy
+## Traffic Spy
 
 [Project Outline](https://github.com/JumpstartLab/curriculum/blob/master/source/projects/traffic_spy.markdown)
 
