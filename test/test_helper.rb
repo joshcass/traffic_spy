@@ -15,7 +15,7 @@ class FeatureTest < Minitest::Test
   include Rack::Test::Methods
 
   def app
-    TaskManager
+    TrafficSpy
   end
 
   def setup
