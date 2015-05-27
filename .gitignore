@@ -1,2 +1,6 @@
 Gemfile.lock
 capybara*.html
+<<<<<<< HEAD
+=======
+.idea
+>>>>>>> 59a253a2f2983dcf8b98bb0b76e41e6ddb5bdfb9
