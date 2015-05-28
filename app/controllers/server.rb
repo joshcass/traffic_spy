@@ -28,6 +28,7 @@ module TrafficSpy class Server < Sinatra::Base
                                         resolution_width: parsed_params["resolutionWidth"],
                                         resolution_height: parsed_params["resolutionHeight"],
                                         ip: parsed_params["ip"],
+                                        source_id: TrafficSpy::Source.find_by(identifier: identifier).id,
                                         sha: Digest::SHA1.hexdigest(params[:payload]))
 
       if request.save
