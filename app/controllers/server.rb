@@ -11,15 +11,17 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do |identifier|
-      request = TrafficSpy::Payload.new(url: params[:url],
-                                        requested_at: params[:requestedAt],
-                                       responded_in: params[:respondedIn],
-                                       referred_by: params[:referredBy],
-                                       request_type: params[:requestType],
-                                       event_name: params[:eventName],
-                                       user_agent: params[:userAgent],
-                                       resolution_width: params[:resolutionWidth],
-                                       ip: params[:ip])
+      parsed_params = JSON.parse(params[:payload])
+      request = TrafficSpy::Payload.new(url: parsed_params["url"],
+                                        requested_at: parsed_params["requestedAt"],
+                                       responded_in: parsed_params["respondedIn"],
+                                       referred_by: parsed_params["referredBy"],
+                                       request_type: parsed_params["requestType"],
+                                       event_name: parsed_params["eventName"],
+                                       user_agent: parsed_params["userAgent"],
+                                       resolution_width: parsed_params["resolutionWidth"],
+                                       resolution_height: parsed_params["resolutionHeight"],
+                                       ip: parsed_params["ip"])
 
     end
 
