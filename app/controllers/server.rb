@@ -13,6 +13,9 @@ module TrafficSpy class Server < Sinatra::Base
       if params[:payload] == "" || params[:payload] == {}
         status 400
         body "Payload cannot be empty"
+      elsif TrafficSpy::Source.find_by(identifier: identifier).nil?
+        status 403
+        body "Identifier does not exist"
       else
         parsed_params = JSON.parse(params[:payload])
         request = TrafficSpy::Payload.new(url: parsed_params["url"],
@@ -26,6 +29,8 @@ module TrafficSpy class Server < Sinatra::Base
                                           resolution_height: parsed_params["resolutionHeight"],
                                           ip: parsed_params["ip"])
 
+        status 200
+        body "Payload successfully received"
       end
     end
 

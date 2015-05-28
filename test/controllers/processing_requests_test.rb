@@ -33,11 +33,10 @@ class ProcessingRequestTest < ControllerTest
   end
 
   def test_request_for_unregistered_source_returns_403_error
-    skip
     post 'sources/jumpstartlab/data', payload: PAYLOAD
 
     assert_equal 403, last_response.status
-    assert_equal "??", last_response.body
+    assert_equal "Identifier does not exist", last_response.body
   end
 
   def test_request_with_existing_source_and_unique_payload_returns_200_status
@@ -45,5 +44,6 @@ class ProcessingRequestTest < ControllerTest
     post 'sources/jumpstartlab/data', payload: PAYLOAD
 
     assert_equal 200, last_response.status
+    assert_equal "Payload successfully received", last_response.body
   end
 end
