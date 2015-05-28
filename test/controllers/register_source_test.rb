@@ -1,16 +1,14 @@
 require_relative '../test_helper'
 
-class RegisterTest < ControllerTest
+class RegistrationTest < ControllerTest
   def test_it_registers_a_source
-    initial_count = TrafficSpy::Source.count
+    assert_equal 0, TrafficSpy::Source.count
 
-    post '/sources', { identifier: "turing", rootUrl:"http://turing.io"}
-
-    final_count = TrafficSpy::Source.count
+    post '/sources', { identifier: "turing", rootUrl:"http://turing.io" }
 
     assert_equal 200, last_response.status
-    assert_equal "{'identifier':'turing'}", last_response.body
-    assert_equal 1, (final_count - initial_count)
+    assert_equal "{\"identifier\":\"turing\"}", last_response.body
+    assert_equal 1, TrafficSpy::Source.count
   end
 
   def test_missing_rootUrl_returns_400_error
@@ -28,17 +26,17 @@ class RegisterTest < ControllerTest
   end
 
   def test_pre_exsiting_identifier_returns_403_error
-    TrafficSpy::Source.create(identifier: "turing", root_url: "www.turing.io")
+    create_source("turing", "www.turing.io")
+    post '/sources', { identifier: "turing", rootUrl: "www.turing.com" }
 
-    post '/sources', { identifier: "turing", rootUrl: "www.turing.com"}
     assert_equal 403, last_response.status
     assert_equal "Identifier has already been taken", last_response.body
   end
 
   def test_pre_existing_rootUrl_returns_403_error
-    TrafficSpy::Source.create(identifier: "turing", root_url: "www.turing.io")
+    create_source("turing", "www.turing.io")
+    post '/sources', { identifier: "turin", rootUrl: "www.turing.io" }
 
-    post '/sources', { identifier: "turin", rootUrl: "www.turing.io"}
     assert_equal 403, last_response.status
     assert_equal "Root url has already been taken", last_response.body
   end

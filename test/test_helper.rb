@@ -26,6 +26,10 @@ class ControllerTest < Minitest::Test
   def teardown
     DatabaseCleaner.clean
   end
+
+  def create_source(identifier, url)
+    TrafficSpy::Source.create(identifier: "#{identifier}", root_url: "#{url}")
+  end
 end
 
 class FeatureTest < Minitest::Test

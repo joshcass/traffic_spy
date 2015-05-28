@@ -8,13 +8,13 @@ module TrafficSpy
       source = TrafficSpy::Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
       if source.save
         status 200
-        {:identifier => source[:identifier]}.to_json
-      elsif source.errors.full_messages.first.include?("has already been taken")
+        { identifier: source[:identifier] }.to_json
+      elsif source.errors.values.include?(["has already been taken"])
         status 403
         source.errors.full_messages.each do |msg|
           body msg
         end
-      elsif source.errors.full_messages.first.include?("can't be blank")
+      elsif source.errors.values.include?(["can't be blank"])
         status 400
         source.errors.full_messages.each do |msg|
           body msg
