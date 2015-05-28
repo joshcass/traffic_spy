@@ -8,23 +8,21 @@ module TrafficSpy
       source = TrafficSpy::SourceCreator.new(params)
       status source.status
       body source.body
-
-      #source = TrafficSpy::Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
-      #if source.save
-        #status 200
-        #{ identifier: source[:identifier] }.to_json
-      #elsif source.errors.values.include?(["has already been taken"])
-        #status 403
-        #source.errors.full_messages.each do |msg|
-          #body msg
-        #end
-      #elsif source.errors.values.include?(["can't be blank"])
-        #status 400
-        #source.errors.full_messages.each do |msg|
-          #body msg
-        #end
-      #end
     end
+
+    post '/sources/:identifier/data' do |identifier|
+      request = TrafficSpy::Payload.new(url: params[:url],
+                                        requested_at: params[:requestedAt],
+                                       responded_in: params[:respondedIn],
+                                       referred_by: params[:referredBy],
+                                       request_type: params[:requestType],
+                                       event_name: params[:eventName],
+                                       user_agent: params[:userAgent],
+                                       resolution_width: params[:resolutionWidth],
+                                       ip: params[:ip])
+
+    end
+
 
     not_found do
       erb :error
