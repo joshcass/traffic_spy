@@ -24,12 +24,12 @@ class ProcessingRequestTest < ControllerTest
   end
 
   def test_request_already_recieved_returns_403_error
-    skip
     create_source("jumpstartlab", "http://jumpstartlab.com")
-    post '/sources/jumstartlab/data', payload: PAYLOAD
+    post '/sources/jumpstartlab/data', payload: PAYLOAD
+    post '/sources/jumpstartlab/data', payload: PAYLOAD
 
     assert_equal 403, last_response.status
-    assert_equal "Payload cannot be empty", last_response.body
+    assert_equal "Payload already exists", last_response.body
   end
 
   def test_request_for_unregistered_source_returns_403_error
