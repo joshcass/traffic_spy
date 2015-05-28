@@ -28,3 +28,14 @@ class ControllerTest < Minitest::Test
   end
 end
 
+class FeatureTest < Minitest::Test
+  include Capybara::DSL
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
+end
