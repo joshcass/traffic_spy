@@ -1,6 +1,8 @@
 require_relative '../test_helper'
 
 class ProcessingRequestTest < ControllerTest
+
+  PAYLOAD = {}
   def test_missing_payload_returns_400_error
     create_source("jumpstartlab", "http://jumpstartlab.com")
     post 'sources/jumpstartlab/data'

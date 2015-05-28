@@ -5,21 +5,25 @@ module TrafficSpy
     end
 
     post '/sources' do
-      source = TrafficSpy::Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
-      if source.save
-        status 200
-        { identifier: source[:identifier] }.to_json
-      elsif source.errors.values.include?(["has already been taken"])
-        status 403
-        source.errors.full_messages.each do |msg|
-          body msg
-        end
-      elsif source.errors.values.include?(["can't be blank"])
-        status 400
-        source.errors.full_messages.each do |msg|
-          body msg
-        end
-      end
+      source = TrafficSpy::SourceCreator.new(params)
+      status source.status
+      body source.body
+
+      #source = TrafficSpy::Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
+      #if source.save
+        #status 200
+        #{ identifier: source[:identifier] }.to_json
+      #elsif source.errors.values.include?(["has already been taken"])
+        #status 403
+        #source.errors.full_messages.each do |msg|
+          #body msg
+        #end
+      #elsif source.errors.values.include?(["can't be blank"])
+        #status 400
+        #source.errors.full_messages.each do |msg|
+          #body msg
+        #end
+      #end
     end
 
     not_found do
