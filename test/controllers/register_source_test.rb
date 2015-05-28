@@ -26,17 +26,17 @@ class RegistrationTest < ControllerTest
   end
 
   def test_pre_exsiting_identifier_returns_403_error
-    TrafficSpy::Source.create(identifier: "turing", root_url: "www.turing.io")
-
+    create_source("turing", "www.turing.io")
     post '/sources', { identifier: "turing", rootUrl: "www.turing.com" }
+
     assert_equal 403, last_response.status
     assert_equal "Identifier has already been taken", last_response.body
   end
 
   def test_pre_existing_rootUrl_returns_403_error
-    TrafficSpy::Source.create(identifier: "turing", root_url: "www.turing.io")
-
+    create_source("turing", "www.turing.io")
     post '/sources', { identifier: "turin", rootUrl: "www.turing.io" }
+
     assert_equal 403, last_response.status
     assert_equal "Root url has already been taken", last_response.body
   end
