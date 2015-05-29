@@ -17,7 +17,9 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do |identifier|
-      @urls = TrafficSpy::Workers.urls(identifier)
+      source = TrafficSpy::Source.find_by(identifier: identifier)
+      @most_visited_urls = source.most_visited_urls
+
       erb :client_dashboard
     end
 
