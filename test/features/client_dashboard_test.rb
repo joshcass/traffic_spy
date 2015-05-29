@@ -32,8 +32,8 @@ class ClientDashboardTest < FeatureTest
     create_payloads
 
     visit '/sources/jumpstartlab'
-    within("#average_response_times ol:first-child")
-    assert page.has_content?("http://jumpstartlab.com/blog")
+    within("#average_response_times ol:first-child") do
+      assert page.has_content?("http://jumpstartlab.com/blog")
+    end
   end
-
 end
