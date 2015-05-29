@@ -4,6 +4,7 @@ class ProcessingRequestTest < ControllerTest
 
 
   def test_missing_payload_returns_400_error
+    skip
     create_source("jumpstartlab", "http://jumpstartlab.com")
     post 'sources/jumpstartlab/data', payload: ""
 

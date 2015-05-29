@@ -12,6 +12,7 @@ module TrafficSpy
 
     post '/sources/:identifier/data' do |identifier|
       payload = TrafficSpy::PayloadCreator.new(params, identifier)
+      binding.pry
       status payload.status
       body payload.body
     end
