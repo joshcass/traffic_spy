@@ -20,6 +20,8 @@ module TrafficSpy
       @source = TrafficSpy::Source.find_by(identifier: identifier)
       @most_visited_urls = @source.most_visited_urls
       @average_response_times = @source.average_response_times
+      @browser_breakdown = @source.browser_breakdown
+
 
       erb :client_dashboard
     end
