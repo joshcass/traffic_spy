@@ -12,14 +12,15 @@ module TrafficSpy
 
     post '/sources/:identifier/data' do |identifier|
       payload = TrafficSpy::PayloadCreator.new(params, identifier)
-      binding.pry
       status payload.status
       body payload.body
     end
 
     get '/sources/:identifier' do |identifier|
-      @most_visited_urls = TrafficSpy::Workers.most_visited_urls(identifier)
-      @avg_response_times = TrafficSpy::Workers.avg_response_times(identifier)
+      @source = TrafficSpy::Source.find_by(identifier: identifier)
+      @most_visited_urls = @source.most_visited_urls
+      @average_response_times = @source.average_response_times
+
       erb :client_dashboard
     end
 

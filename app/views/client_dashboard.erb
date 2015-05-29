@@ -3,13 +3,14 @@
   <ol>
     <% @most_visited_urls.each do |url| %>
       <li><%= url.first %></li>
+      <li><a href="/sources/<%= @source.identifier %>/urls<%= URI(url.first).path %>"><%= url.first %></a></li>
     <% end %>
   </ol>
 </div>
 <div id="average_response_times">
   <ol>
-    <% @avg_response_times.each do |k, v| %>
-      <li>url: <%= k %> average response time: <%= v.to_i %></li>
+    <% @average_response_times.each do |url, time| %>
+      <li><%= url %>, <%= time.to_i %></li>
     <% end %>
   </ol>
 </div>
