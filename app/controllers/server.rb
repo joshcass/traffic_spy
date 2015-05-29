@@ -18,10 +18,19 @@ module TrafficSpy
 
     get '/sources/:identifier' do |identifier|
       @source = TrafficSpy::Source.find_by(identifier: identifier)
-      @most_visited_urls = @source.most_visited_urls
-      @average_response_times = @source.average_response_times
+      if @source.nil?
+        @every_error = "You're in a coma right now. This is a signal telling you to wake up. Also, this identifier does not exist."
 
-      erb :client_dashboard
+        erb :every_error
+      else
+        @most_visited_urls      = @source.most_visited_urls
+        @average_response_times = @source.average_response_times
+        @browser_breakdown      = @source.browser_breakdown
+        @os_breakdown           = @source.os_breakdown
+        @screen_res_breakdown   = @source.screen_res_breakdown
+
+        erb :client_dashboard
+      end
     end
 
     not_found do
