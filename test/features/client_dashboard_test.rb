@@ -36,4 +36,14 @@ class ClientDashboardTest < FeatureTest
       assert page.has_content?("http://jumpstartlab.com/blog")
     end
   end
+
+  def test_user_sees_web_browser_breakdown_for_all_requests
+    create_source("jumpstartlab", "http://jumpstartlab.com")
+    create_payloads
+
+    visit '/sources/jumpstartlab'
+    within("#browser_breakdown ol:first-child") do
+      assert page.has_content?("Chrome")
+    end
+  end
 end
