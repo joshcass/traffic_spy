@@ -20,5 +20,17 @@
     <% end %>
   </ol>
 </div>
-
-
+<div id="os_breakdown">
+  <ol>
+    <% @os_breakdown.each do |os, visits| %>
+      <li><%= os %>, <%= visits %></li>
+    <% end %>
+  </ol>
+</div>
+<div id="screen_res_breakdown">
+  <ol>
+    <% @screen_res_breakdown.each do |screen_res, visits| %>
+      <li><%= screen_res.join(" x ") %>, <%= visits %></li>
+    <% end %>
+  </ol>
+</div>

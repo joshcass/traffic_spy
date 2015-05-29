@@ -61,9 +61,9 @@ module Helpers
                                referred_by: "http://jumpstartlab.com",
                                request_type: "GET",
                                event_name: "socialLogin",
-                               user_agent: "Mozilla/5.0 (compatible; MSIE 9.0;Windows NT; Trident/5.0)",
-                               resolution_width: "1920",
-                               resolution_height: "1280",
+                               user_agent: "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)",
+                               resolution_width: "800",
+                               resolution_height: "600",
                                ip: "63.29.38.211",
                                source_id: 1,
                                sha: Digest::SHA1.hexdigest("thing"))
