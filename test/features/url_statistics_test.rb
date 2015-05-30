@@ -5,7 +5,7 @@ class ClientDashboardTest < FeatureTest
     create_source("jumpstartlab", "http://jumpstartlab.com")
     visit '/sources/jumpstartlab/urls/blog'
     within("#every_error") do
-      assert page.has_content?("This URL is lonely, so lonely, because it has never been requested.")
+      assert page.has_content?("The path /blog is lonely, so lonely, because it has never been requested.")
     end
   end
 

@@ -58,4 +58,16 @@ class TrafficSpy::Source < ActiveRecord::Base
   def top_os(path)
     user_agents(path).each_with_object(Hash.new(0)) { |agent, counts| counts[agent.os] += 1 }
   end
+
+  def hourly_breakdown(event_name)
+    payloads.where(event_name: event_name).group_by_hour_of_day(:requested_at, format: "%l%p").count
+  end
+
+  def total_received(event_name)
+    payloads.where(event_name: event_name).count
+  end
+
+  def event_names
+    payloads.group(:event_name).count.sort_by {|_,v|v}.reverse
+  end
 end
