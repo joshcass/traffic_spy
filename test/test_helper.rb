@@ -32,53 +32,53 @@ module Helpers
 
   def create_payloads
     TrafficSpy::Payload.create( url: "http://jumpstartlab.com/blog",
-                                requested_at: "2013-02-16 21:38:28 -0700",
-                                responded_in: 93,
-                                referred_by: "http://google.com",
-                                request_type: "GET",
-                                event_name: "socialLogin",
-                                user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
-                                resolution_width: "1920",
-                                resolution_height: "1280",
-                                ip: "63.29.38.211",
-                                source_id: 1,
-                                sha: Digest::SHA1.hexdigest(PAYLOAD))
+                               requested_at: "2013-02-16 21:38:28 -0700",
+                               responded_in: 93,
+                               referred_by: "http://google.com",
+                               request_type: "GET",
+                               event_name: "socialLogin",
+                               user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
+                               resolution_width: "1920",
+                               resolution_height: "1280",
+                               ip: "63.29.38.211",
+                               source_id: 1,
+                               sha: Digest::SHA1.hexdigest(PAYLOAD))
     TrafficSpy::Payload.create( url: "http://jumpstartlab.com/about",
-                                requested_at: "2013-02-16 22:38:28 -0700",
-                                responded_in: 35,
-                                referred_by: "http://jumpstartlab.com",
-                                request_type: "GET",
-                                event_name: "contact",
-                                user_agent: "Mozilla/5.0 (Windows; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
-                                resolution_width: "1920",
-                                resolution_height: "1280",
-                                ip: "63.29.38.211",
-                                source_id: 1,
-                                sha: Digest::SHA1.hexdigest("stuff"))
+                               requested_at: "2013-02-16 22:38:28 -0700",
+                               responded_in: 35,
+                               referred_by: "http://jumpstartlab.com",
+                               request_type: "GET",
+                               event_name: "contact",
+                               user_agent: "Mozilla/5.0 (Windows; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
+                               resolution_width: "1920",
+                               resolution_height: "1280",
+                               ip: "63.29.38.211",
+                               source_id: 1,
+                               sha: Digest::SHA1.hexdigest("stuff"))
     TrafficSpy::Payload.create( url: "http://jumpstartlab.com/blog",
-                                requested_at: "2013-02-16 20:38:28 -0700",
-                                responded_in: 91,
-                                referred_by: "http://turing.io",
-                                request_type: "POST",
-                                event_name: "socialLogin",
-                                user_agent: "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)",
-                                resolution_width: "800",
-                                resolution_height: "600",
-                                ip: "63.29.38.211",
-                                source_id: 1,
-                                sha: Digest::SHA1.hexdigest("thing"))
+                               requested_at: "2013-02-16 20:38:28 -0700",
+                               responded_in: 91,
+                               referred_by: "http://turing.io",
+                               request_type: "POST",
+                               event_name: "socialLogin",
+                               user_agent: "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)",
+                               resolution_width: "800",
+                               resolution_height: "600",
+                               ip: "63.29.38.211",
+                               source_id: 1,
+                               sha: Digest::SHA1.hexdigest("thing"))
     TrafficSpy::Payload.create( url: "http://jumpstartlab.com/blog",
-                                requested_at: "2013-02-26 21:38:28 -0700",
-                                responded_in: 92,
-                                referred_by: "http://google.com",
-                                request_type: "GET",
-                                event_name: "socialLogin",
-                                user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
-                                resolution_width: "1920",
-                                resolution_height: "1280",
-                                ip: "63.29.38.211",
-                                source_id: 1,
-                                sha: Digest::SHA1.hexdigest("blah"))
+                               requested_at: "2013-02-26 21:38:28 -0700",
+                               responded_in: 92,
+                               referred_by: "http://google.com",
+                               request_type: "GET",
+                               event_name: "socialLogin",
+                               user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
+                               resolution_width: "1920",
+                               resolution_height: "1280",
+                               ip: "63.29.38.211",
+                               source_id: 1,
+                               sha: Digest::SHA1.hexdigest("blah"))
 
   end
 end
@@ -104,6 +104,18 @@ end
 
 class FeatureTest < Minitest::Test
   include Capybara::DSL
+  include Helpers
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
+end
+
+class ModelTest < Minitest::Test
   include Helpers
 
   def setup
