@@ -1,0 +1,47 @@
+<h1>URL Statistics</h1>
+
+<div id="longest_response">
+  <h3>Longest Response Time: <%= @longest_response %></h3>
+</div>
+
+<div id="shortest_response">
+  <h3>Shortest Response Time: <%= @shortest_response %></h3>
+</div>
+
+<div id="average_response">
+  <h3>Average Response Time: <%= @average_response.to_i %></h3>
+</div>
+
+<div id="http_verbs">
+  <h3>HTTP Verbs used:</h3>
+  <ul>
+    <% @http_verbs.each do |verb| %>
+      <li><%= verb %></li>
+    <% end %>
+  </ul>
+</div>
+<h3>Top Referrers:</h3>
+<div id="top_referrers">
+  <ol>
+    <% @top_referrers.each do |url, _| %>
+      <li><%= url %></li>
+    <% end %>
+  </ol>
+</div>
+<h3>Top Browsers:</h3>
+<div id="top_browsers">
+  <ol>
+    <% @top_browsers.each do |browser, _| %>
+      <li><%= browser %></li>
+    <% end %>
+  </ol>
+</div>
+<h3>Top Operating Systems:</h3>
+<div id="top_os">
+  <ol>
+    <% @top_os.each do |os, _| %>
+      <li><%= os %></li>
+    <% end %>
+  </ol>
+</div>
+

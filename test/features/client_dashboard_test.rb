@@ -1,13 +1,5 @@
 require_relative '../test_helper'
 
-# A list of URLs ranked from most requested to least requested, the list items should be links to view url specific data.
-#A table showing Browser, OS, and Screen Resolutions(widthXheight) for all requests.
-# A list of URLs ranked by average response time, listed in descending order.
-# A link to view aggregate event data.
-#As a User when I send a get request to http://yourapplication:port/sources/IDENTIFIER, and the identifier doesn't exist,
-# Then I should see an error page, saying the identifier doesn't exits.
-
-
 class ClientDashboardTest < FeatureTest
   def test_user_sees_unknown_source
     visit '/sources/jumpstartlab'
