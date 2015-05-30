@@ -18,6 +18,9 @@ Dir[APP_ROOT.join('app', 'models', '*.rb')].each { |file| require file }
 # require your database configurations
 require APP_ROOT.join('config', 'database')
 
+# configure capybara to put html in tmp
+Capybara.save_and_open_page_path = "tmp"
+
 # configure Server settings
 module TrafficSpy
   class Server < Sinatra::Base
