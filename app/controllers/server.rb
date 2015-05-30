@@ -53,6 +53,18 @@ module TrafficSpy
       end
     end
 
+    get '/sources/:identifier/events' do |identifier|
+      @source = TrafficSpy::Source.find_by(identifier: identifier)
+      if @source.event_names.count == 0
+        @every_error = "Why you no have event?"
+
+        erb :every_error
+      else
+        @event_names = @source.event_names
+
+        erb :events_index
+      end
+    end
 
     not_found do
       erb :error
