@@ -58,4 +58,8 @@ class TrafficSpy::Source < ActiveRecord::Base
   def top_os(path)
     user_agents(path).each_with_object(Hash.new(0)) { |agent, counts| counts[agent.os] += 1 }
   end
+
+  def event_names
+    payloads.group(:event_name).count.sort_by {|_,v|v}.reverse
+  end
 end

@@ -66,5 +66,4 @@ class ClientDashboardTest < FeatureTest
       assert page.has_content?("1920 x 1280")
     end
   end
-
 end
