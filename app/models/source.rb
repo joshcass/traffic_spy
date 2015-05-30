@@ -66,4 +66,8 @@ class TrafficSpy::Source < ActiveRecord::Base
   def total_received(event_name)
     payloads.where(event_name: event_name).count
   end
+
+  def event_names
+    payloads.group(:event_name).count.sort_by {|_,v|v}.reverse
+  end
 end
