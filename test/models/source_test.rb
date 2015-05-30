@@ -79,14 +79,23 @@ class SourceTest < ModelTest
   end
 
   def test_top_referrers
-    skip
+    source = create_source("jumpstartlab", "http://jumpstartlab.com")
+    create_payloads
+
+    assert_equal [["http://google.com", 2], ["http://turing.io", 1]], source.top_referrers("http://jumpstartlab.com/blog")
   end
 
   def test_top_browsers
-    skip
+    source = create_source("jumpstartlab", "http://jumpstartlab.com")
+    create_payloads
+
+    assert_equal ["Chrome", "Internet Explorer"], source.top_browsers("http://jumpstartlab.com/blog").map{|key, value| key}
   end
 
   def test_top_os
-    skip
+    source = create_source("jumpstartlab", "http://jumpstartlab.com")
+    create_payloads
+
+    assert_equal ["OS X 10.8.2", "Windows 7"], source.top_os("http://jumpstartlab.com/blog").map {|x,y|x }
   end
 end
