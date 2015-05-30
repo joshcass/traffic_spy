@@ -33,6 +33,27 @@ module TrafficSpy
       end
     end
 
+    get '/sources/:identifier/urls/*' do |identifier, splat|
+      @source = TrafficSpy::Source.find_by(identifier: identifier)
+      @path = "#{@source.root_url}/#{splat}"
+      if @source.longest_response(@path).nil?
+        @every_error = "This URL is lonely, so lonely, because it has never been requested."
+
+        erb :every_error
+      else
+        @longest_response  = @source.longest_response(@path)
+        @shortest_response = @source.shortest_response(@path)
+        @average_response  = @source.average_response(@path)
+        @http_verbs        = @source.http_verbs(@path)
+        @top_referrers     = @source.top_referrers(@path)
+        @top_browsers      = @source.top_browsers(@path)
+        @top_os            = @source.top_os(@path)
+
+        erb :url_statistics
+      end
+    end
+
+
     not_found do
       erb :error
     end
