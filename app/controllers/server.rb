@@ -19,7 +19,7 @@ module TrafficSpy
     get '/sources/:identifier' do |identifier|
       @source = TrafficSpy::Source.find_by(identifier: identifier)
       if @source.nil?
-        @every_error = "You're in a coma right now. This is a signal telling you to wake up. Also, this identifier does not exist."
+        @every_error = "You're in a coma right now. This is a signal telling you to wake up. Also, the identifier <strong>#{identifier}</strong> does not exist."
 
         erb :every_error
       else
@@ -37,7 +37,7 @@ module TrafficSpy
       @source = TrafficSpy::Source.find_by(identifier: identifier)
       @path = "#{@source.root_url}/#{splat}"
       if @source.longest_response(@path).nil?
-        @every_error = "This URL is lonely, so lonely, because it has never been requested."
+        @every_error = "The path <strong>/#{splat}</strong> is lonely, so lonely, because it has never been requested."
 
         erb :every_error
       else
@@ -56,7 +56,16 @@ module TrafficSpy
     get '/sources/:identifier/events/:event_name' do |identifier, event_name|
       @source = TrafficSpy::Source.find_by(identifier: identifier)
       @event_name = event_name
+      if @source.total_received(@event_name) == 0
+        @every_error = "No #{event_name} event has been defined. <a href='/sources/#{identifier}/events'>Click here to go to the event index for #{identifier.capitalize}.</a>"
 
+        erb :every_error
+      else
+        @hourly_breakdown = @source.hourly_breakdown(@event_name)
+        @total_received   = @source.total_received(@event_name)
+
+        erb :event_details
+      end
     end
 
     not_found do

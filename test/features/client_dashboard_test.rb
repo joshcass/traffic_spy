@@ -5,7 +5,7 @@ class ClientDashboardTest < FeatureTest
     visit '/sources/jumpstartlab'
 
     within("#every_error") do
-      assert page.has_content?("You're in a coma right now. This is a signal telling you to wake up. Also, this identifier does not exist")
+      assert page.has_content?("You're in a coma right now. This is a signal telling you to wake up. Also, the identifier jumpstartlab does not exist")
     end
   end
   

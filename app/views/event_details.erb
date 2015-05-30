@@ -1,4 +1,13 @@
 <div>
   <h1>Event Details for <%= @event_name %></h1>
 </div>
-
+<div id="hourly_breakdown">
+  <ul>
+    <% @hourly_breakdown.each do |time, count| %>
+      <li><%= time %>: <%= count %></li>
+    <% end %>
+  </ul>
+</div>
+<div id="total_received">
+  <h3>Received a total of <%= @total_received %> times.</h3>
+</div>
