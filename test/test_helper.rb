@@ -12,6 +12,9 @@ require 'database_cleaner'
 Capybara.app = TrafficSpy::Server
 DatabaseCleaner.strategy = :truncation, {except: %w[public.schema_migrations]}
 
+# configure capybara to put html in tmp
+Capybara.save_and_open_page_path = "tmp"
+
 module Helpers
   PAYLOAD = {
     url: "http://jumpstartlab.com/blog",
