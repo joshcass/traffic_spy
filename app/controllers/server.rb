@@ -84,5 +84,10 @@ module TrafficSpy
     not_found do
       erb :error
     end
+
+    get '/dashboard_info.json' do
+      content_type :json
+      TrafficSpy::Source.all.to_json
+    end
   end
 end
