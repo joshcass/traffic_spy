@@ -1,0 +1,8 @@
+<h3>Average Response Times:</h3>
+<div id="average_response_times">
+  <ol>
+    <% @average_response_times.each do |url, time| %>
+      <li><%= url %>, <%= time.to_i %></li>
+    <% end %>
+  </ol>
+</div>

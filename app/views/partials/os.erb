@@ -1,0 +1,8 @@
+<h3>Operating System Breakdown:</h3>
+<div id="os_breakdown">
+  <ol>
+    <% @os_breakdown.each do |os, visits| %>
+      <li><%= os %>, <%= visits %></li>
+    <% end %>
+  </ol>
+</div>

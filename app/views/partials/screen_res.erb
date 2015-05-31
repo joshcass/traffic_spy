@@ -1,0 +1,8 @@
+<h3>Screen Resolution Breakdown:</h3>
+<div id="screen_res_breakdown">
+  <ol>
+    <% @screen_res_breakdown.each do |screen_res, visits| %>
+      <li><%= screen_res.join(" x ") %>, <%= visits %></li>
+    <% end %>
+  </ol>
+</div>

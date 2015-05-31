@@ -1,0 +1,8 @@
+<h3>Browser Breakdown:</h3>
+<div id="browser_breakdown">
+  <ol>
+    <% @browser_breakdown.each do |browser, visits| %>
+      <li><%= browser %>, <%= visits %></li>
+    <% end %>
+  </ol>
+</div>
