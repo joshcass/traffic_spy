@@ -4,6 +4,14 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/custom.css">
     <title>Traffic Spy</title>
+
+<script type="text/javascript">
+  var timeout = setTimeout("location.reload(true);",60000);
+  function resetTimeout() {
+    clearTimeout(timeout);
+    timeout = setTimeout("location.reload(true);",60000);
+  }
+</script>
   </head>
   <body>
     <div class="container">
@@ -11,6 +19,6 @@
     </div>
     <div class="footer">
       <%= partial :'partials/footer' %>
-      </div>
+    </div>
   </body>
 </html>
