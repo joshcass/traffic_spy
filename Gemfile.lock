@@ -92,6 +92,8 @@ GEM
     sinatra-activerecord (2.0.6)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sinatra-partial (0.4.0)
+      sinatra
     slop (3.6.0)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -137,6 +139,7 @@ DEPENDENCIES
   shotgun
   sinatra
   sinatra-activerecord
+  sinatra-partial
   thin
   tux
   useragent

@@ -8,6 +8,7 @@ gem 'useragent'
 gem 'thin'
 gem 'pry'
 gem 'groupdate'
+gem 'sinatra-partial', require: 'sinatra/partial'
 
 group :development, :test do
   gem 'shotgun'
