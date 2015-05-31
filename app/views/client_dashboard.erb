@@ -1,39 +1,9 @@
 <div id="welcome"><h1>Welcome to Traffic Spy for <%= @source.identifier.capitalize %></h1></div>
-<div id="most_visited_urls">
-  <ol>
-    <% @most_visited_urls.each do |url| %>
-      <li><a href="/sources/<%= @source.identifier %>/urls<%= URI(url.first).path %>"><%= url.first %></a></li>
-    <% end %>
-  </ol>
-</div>
-<div id="average_response_times">
-  <ol>
-    <% @average_response_times.each do |url, time| %>
-      <li><%= url %>, <%= time.to_i %></li>
-    <% end %>
-  </ol>
-</div>
-<div id="browser_breakdown">
-  <ol>
-    <% @browser_breakdown.each do |browser, visits| %>
-      <li><%= browser %>, <%= visits %></li>
-    <% end %>
-  </ol>
-</div>
-<div id="os_breakdown">
-  <ol>
-    <% @os_breakdown.each do |os, visits| %>
-      <li><%= os %>, <%= visits %></li>
-    <% end %>
-  </ol>
-</div>
-<div id="screen_res_breakdown">
-  <ol>
-    <% @screen_res_breakdown.each do |screen_res, visits| %>
-      <li><%= screen_res.join(" x ") %>, <%= visits %></li>
-    <% end %>
-  </ol>
-</div>
+<%= partial :'partials/url' %>
+<%= partial :'partials/time' %>
+<%= partial :'partials/browser' %>
+<%= partial :'partials/os' %>
+<%= partial :'partials/screen_res' %>
 <div id="events_index">
   <a href="/sources/<%= @source.identifier %>/events">Events Index</a>
 </div>
