@@ -6,7 +6,17 @@ class EventDetailsTest < FeatureTest
 
     visit '/sources/jumpstartlab/events/socialLogin'
     within("#every_error") do
-      assert page.has_content?("No socialLogin event has been defined. Click here to go to the event index for Jumpstartlab.")
+      assert page.has_content?("socialLogin's? I don't believe they exist. Click here to go to the event index for Jumpstartlab.")
+    end
+  end
+
+  def test_clicking_on_event_index_link_from_error_page_user_sees_event_index
+    create_source("jumpstartlab", "http://jumpstartlab.com")
+
+    visit '/sources/jumpstartlab/events/socialLogin'
+    within("#every_error") do
+      click_on("Click here to go to the event index for Jumpstartlab.")
+      assert_equal '/sources/jumpstartlab/events', current_path
     end
   end
 

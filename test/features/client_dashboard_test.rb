@@ -1,14 +1,14 @@
 require_relative '../test_helper'
 
 class ClientDashboardTest < FeatureTest
-  def test_user_sees_unknown_source
+  def test_user_sees_unknown_source_error_page
     visit '/sources/jumpstartlab'
 
     within("#every_error") do
       assert page.has_content?("You're in a coma right now. This is a signal telling you to wake up. Also, the identifier jumpstartlab does not exist")
     end
   end
-  
+
   def test_a_client_page_exist_for_known_source
     create_source("jumpstartlab", "http://jumpstartlab.com")
     visit '/sources/jumpstartlab'
@@ -65,5 +65,25 @@ class ClientDashboardTest < FeatureTest
     within("#screen_res_breakdown ol:first-child") do
       assert page.has_content?("1920 x 1280")
     end
+  end
+
+  def test_user_sees_url_statistics_page_when_they_click_on_a_url_path
+    create_source("jumpstartlab", "http://jumpstartlab.com")
+    create_payloads
+
+    visit '/sources/jumpstartlab'
+    within("#most_visited_urls ol:first-child") do
+      click_on("http://jumpstartlab.com/blog")
+      assert_equal '/sources/jumpstartlab/urls/blog', current_path
+    end
+  end
+
+  def test_user_sees_events_index_page_when_they_click_events_index_link
+    create_source("jumpstartlab", "http://jumpstartlab.com")
+    create_payloads
+
+    visit '/sources/jumpstartlab'
+    click_on("Events Index")
+    assert_equal '/sources/jumpstartlab/events', current_path
   end
 end

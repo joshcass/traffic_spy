@@ -70,7 +70,7 @@ module TrafficSpy
       @source = TrafficSpy::Source.find_by(identifier: identifier)
       @event_name = event_name
       if @source.total_received(@event_name) == 0
-        @every_error = "No #{event_name} event has been defined. <a href='/sources/#{identifier}/events'>Click here to go to the event index for #{identifier.capitalize}.</a>"
+        @every_error = "#{event_name}'s? I don't believe they exist. <a href='/sources/#{identifier}/events'>Click here to go to the event index for #{identifier.capitalize}.</a>"
 
         erb :every_error
       else
@@ -80,7 +80,6 @@ module TrafficSpy
         erb :event_details
       end
     end
-
 
     not_found do
       erb :error
