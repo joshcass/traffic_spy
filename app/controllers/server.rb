@@ -1,5 +1,11 @@
 module TrafficSpy
   class Server < Sinatra::Base
+    helpers do
+      def make_list(element)
+        "<li>#{element}</li>"
+      end
+    end
+
     get '/' do
       erb :index
     end
