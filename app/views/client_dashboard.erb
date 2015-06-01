@@ -1,8 +1,5 @@
 <script src="/javascripts/client_dashboard.js"></script>
 <div id="welcome"><h1>Welcome to Traffic Spy for <%= @source.identifier.capitalize %></h1></div>
-<div id="dashboard-info">
-
-</div>
 <%= partial :'partials/url' %>
 <%= partial :'partials/time' %>
 <%= partial :'partials/browser' %>
@@ -11,3 +8,7 @@
 <div id="events_index">
   <a href="/sources/<%= @source.identifier %>/events">Events Index</a>
 </div>
+<h3>Dynamically Updated list of Sources:</h3>
+<div id="dashboard-info">
+</div>
+
