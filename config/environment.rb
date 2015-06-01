@@ -2,6 +2,7 @@
 require 'bundler'
 require 'tilt/erb'
 require 'digest'
+require 'json'
 
 Bundler.require
 
