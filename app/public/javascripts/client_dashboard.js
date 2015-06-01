@@ -17,5 +17,4 @@ function appendSources(sources) {
     var root_url = source.root_url
         $("#dashboard-info").append("<p>"+root_url+"</p>");
     })
-
 }
